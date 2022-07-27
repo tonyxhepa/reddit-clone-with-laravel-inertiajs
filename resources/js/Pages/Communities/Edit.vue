@@ -43,7 +43,7 @@
                 :class="{ 'opacity-25': form.processing }"
                 :disabled="form.processing"
               >
-                Store
+                Update
               </BreezeButton>
             </div>
           </form>
@@ -61,18 +61,15 @@ import BreezeInputError from "@/Components/InputError.vue";
 import BreezeLabel from "@/Components/Label.vue";
 import { Head, useForm } from "@inertiajs/inertia-vue3";
 
-defineProps({
+const props = defineProps({
+  community: Object,
   errors: Object,
 });
 
-const form = useForm({
-  name: "",
-  description: "",
-  slug: "",
-});
+const form = useForm(props.community);
 
 const submit = () => {
-  form.post(route("communities.store"));
+  form.put(route("communities.update", props.community.id));
 };
 </script>
 
