@@ -97,7 +97,10 @@
                       </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 bg-white">
-                      <tr v-for="community in communities" :key="community.id">
+                      <tr
+                        v-for="community in communities.data"
+                        :key="community.id"
+                      >
                         <td
                           class="
                             whitespace-nowrap
@@ -136,15 +139,24 @@
                         >
                           <Link
                             :href="route('communities.edit', community.id)"
-                            class="text-indigo-600 hover:text-indigo-900"
-                            >Edit<span class="sr-only"
-                              >, Lindsay Walton</span
-                            ></Link
+                            class="text-indigo-600 hover:text-indigo-900 mr-3"
+                            >Edit</Link
+                          >
+                          <Link
+                            :href="route('communities.destroy', community.id)"
+                            class="text-red-600 hover:text-red-900"
+                            method="delete"
+                            as="button"
+                            type="button"
+                            >Delete</Link
                           >
                         </td>
                       </tr>
                     </tbody>
                   </table>
+                  <div class="m-2 p-2">
+                    <Pagination :links="communities.links" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -158,6 +170,7 @@
 <script setup>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
+import Pagination from "../../Components/Pagination.vue";
 
 defineProps({
   communities: Object,
