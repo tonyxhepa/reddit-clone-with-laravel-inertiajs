@@ -6,10 +6,11 @@ import BreezeInputError from "@/Components/InputError.vue";
 import BreezeLabel from "@/Components/Label.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 defineProps({
-    errors: Object
-})
+  errors: Object,
+});
 const form = useForm({
   name: "",
+  username: "",
   email: "",
   password: "",
   password_confirmation: "",
@@ -27,7 +28,10 @@ const submit = () => {
   <BreezeGuestLayout>
     <Head title="Register" />
 
-    <form @submit.prevent="submit">
+    <form
+      @submit.prevent="submit"
+      class="max-w-md mx-auto bg-white shadow rounded-md p-6"
+    >
       <div>
         <BreezeLabel for="name" value="Name" />
         <BreezeInput
@@ -38,19 +42,19 @@ const submit = () => {
           autofocus
           autocomplete="name"
         />
-          <BreezeInputError :message="errors.name" />
+        <BreezeInputError :message="errors.name" />
       </div>
-        <div class="mt-4">
-            <BreezeLabel for="username" value="Username" />
-            <BreezeInput
-                id="username"
-                type="text"
-                class="mt-1 block w-full"
-                v-model="form.username"
-                autocomplete="username"
-            />
-            <BreezeInputError :message="errors.username" />
-        </div>
+      <div class="mt-4">
+        <BreezeLabel for="username" value="Username" />
+        <BreezeInput
+          id="username"
+          type="text"
+          class="mt-1 block w-full"
+          v-model="form.username"
+          autocomplete="username"
+        />
+        <BreezeInputError :message="errors.username" />
+      </div>
       <div class="mt-4">
         <BreezeLabel for="email" value="Email" />
         <BreezeInput
@@ -60,7 +64,7 @@ const submit = () => {
           v-model="form.email"
           autocomplete="email"
         />
-          <BreezeInputError :message="errors.email" />
+        <BreezeInputError :message="errors.email" />
       </div>
 
       <div class="mt-4">
@@ -72,7 +76,7 @@ const submit = () => {
           v-model="form.password"
           autocomplete="new-password"
         />
-          <BreezeInputError :message="errors.password" />
+        <BreezeInputError :message="errors.password" />
       </div>
 
       <div class="mt-4">
