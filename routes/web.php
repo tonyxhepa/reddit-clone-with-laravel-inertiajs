@@ -2,7 +2,8 @@
 
 
 use App\Http\Controllers\Backend\CommunityController;
-use App\Http\Controllers\Frontend\SubredditController;
+use App\Http\Controllers\Backend\CommunityPostController;
+use App\Http\Controllers\Frontend\CommunityController as FrontendCommunityController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -17,7 +18,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/r/{slug}', [SubredditController::class, 'show'])->name('subbredit.show');
+Route::get('/r/{slug}', [FrontendCommunityController::class, 'show'])->name('subbredit.show');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/dashboard', function () {
@@ -25,6 +26,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     })->name('dashboard');
 
     Route::resource('/dashboard/communities', CommunityController::class);
+    Route::resource('/dashboard/communities.posts', CommunityPostController::class);
 });
 
 
