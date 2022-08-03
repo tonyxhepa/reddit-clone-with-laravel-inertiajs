@@ -40,8 +40,10 @@
       </p>
       <div class="flex m-2 p-2">
         <p class="mr-4 p-2">Comments(2)</p>
-        <a
-          href="#"
+        <Link
+          :href="
+            route('frontend.communities.posts.show', [community, post.slug])
+          "
           class="
             inline-flex
             items-center
@@ -71,13 +73,14 @@
               clip-rule="evenodd"
             ></path>
           </svg>
-        </a>
+        </Link>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { Link } from "@inertiajs/inertia-vue3";
 defineProps({
   post: Object,
   community: String,

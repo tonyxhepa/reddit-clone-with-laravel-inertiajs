@@ -19,7 +19,7 @@
         <PostCard
           v-for="post in posts.data"
           :post="post"
-          :community="community.name"
+          :community="community.slug"
           :key="post.id"
         />
         <div class="mt-4 p-2">
