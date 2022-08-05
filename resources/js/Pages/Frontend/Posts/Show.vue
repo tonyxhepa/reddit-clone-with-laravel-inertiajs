@@ -10,12 +10,12 @@
           </h2>
         </div>
         <div class="m-2 p-2 bg-white text-sm text-slate-400">
-          <div class="flex flex-col md:flex-row justify-between">
+          <div class="flex flex-col md:flex-row justify-between m-2">
             <div>
               Posted by
               <span class="ml-2 text-slate-700">{{ post.data.username }}</span>
             </div>
-            <div>
+            <div v-if="$page.props.auth.auth_check && post.data.owner">
               <Link
                 :href="
                   route('communities.posts.edit', [
@@ -23,30 +23,52 @@
                     post.data.slug,
                   ])
                 "
-                class="font-semibold text-blue-500 hover:text-blue-700"
+                class="
+                  font-semibold
+                  bg-blue-500
+                  hover:bg-blue-700
+                  rounded-md
+                  text-white
+                  px-4
+                  py-2
+                  mr-2
+                "
                 >Edit</Link
               >
               <Link
                 :href="
-                  route('communities.posts.edit', [
+                  route('communities.posts.destroy', [
                     community.slug,
                     post.data.slug,
                   ])
                 "
-                class="font-semibold text-red-500 hover:text-red-700 ml-2"
+                class="
+                  font-semibold
+                  bg-red-500
+                  hover:bg-red-700
+                  rounded-md
+                  text-white
+                  px-4
+                  py-2
+                "
+                method="delete"
+                as="button"
+                type="button"
                 >Delete</Link
               >
             </div>
           </div>
-          <h1 class="font-semibold text-3xl text-black">
-            {{ post.data.title }}
-          </h1>
-          <p class="text-slate-700">{{ post.data.description }}</p>
-          <a
-            :href="post.data.url"
-            class="font-semibold text-blue-500 text-sm hover:text-blue-300"
-            >{{ post.data.url }}</a
-          >
+          <div class="p-2">
+            <h1 class="font-semibold text-3xl text-black">
+              {{ post.data.title }}
+            </h1>
+            <p class="text-slate-700 my-2">{{ post.data.description }}</p>
+            <a
+              :href="post.data.url"
+              class="font-semibold text-blue-500 text-sm hover:text-blue-300"
+              >{{ post.data.url }}</a
+            >
+          </div>
         </div>
       </div>
       <div class="w-full md:w-4/12 p-4">
