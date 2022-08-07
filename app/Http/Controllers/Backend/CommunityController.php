@@ -67,6 +67,7 @@ class CommunityController extends Controller
      */
     public function edit(Community $community)
     {
+        $this->authorize('update', $community);
         return Inertia::render('Communities/Edit', compact('community'));
     }
 
@@ -79,6 +80,7 @@ class CommunityController extends Controller
      */
     public function update(CommunityStoreRequest $request, Community $community)
     {
+        $this->authorize('update', $community);
         $community->update($request->validated());
 
         return to_route('communities.index')->with('message', 'Community updated successfully.');
@@ -92,6 +94,7 @@ class CommunityController extends Controller
      */
     public function destroy(Community $community)
     {
+        $this->authorize('delete', $community);
         $community->delete();
         return back()->with('message', 'Community deleted successfully.');
     }
