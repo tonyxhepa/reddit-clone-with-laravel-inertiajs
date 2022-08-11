@@ -12,7 +12,9 @@
       dark:bg-gray-800 dark:border-gray-700
     "
   >
-    <div class="mr-3">upvote</div>
+    <div class="mr-3">
+      <PostVote :post="post.slug" />
+    </div>
     <div>
       <div class="flex m-2 p-2">
         <span class="font-semibold mr-3">r/{{ community }}</span>
@@ -81,6 +83,7 @@
 
 <script setup>
 import { Link } from "@inertiajs/inertia-vue3";
+import PostVote from "./PostVote.vue";
 defineProps({
   post: Object,
   community: String,
