@@ -1,56 +1,28 @@
 <template>
   <div class="flex flex-col w-12 m-2 p-2">
-    <Link
-      :href="route('posts.upVote', post)"
-      method="post"
-      as="button"
-      type="button"
-      class="text-gray-400 hover:text-blue-400"
-      ><svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M5 10l7-7m0 0l7 7m-7-7v18"
-        />
-      </svg>
-    </Link>
-    <div class="my-2">45k</div>
-    <Link
-      :href="route('posts.downVote', post)"
-      method="post"
-      as="button"
-      type="button"
-      class="text-gray-400 hover:text-red-400"
-      ><svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M19 14l-7 7m0 0l-7-7m7 7V3"
-        />
-      </svg>
-    </Link>
+    <UpVoteLink
+      :slug="post.slug"
+      :class="{
+        'text-blue-600': post.postVotes[0] && post.postVotes[0].vote == 1,
+      }"
+    />
+    <div class="p-2 my-2 bg-blue-300 rounded-md">{{ post.votes }}</div>
+    <DownVoteLink
+      :slug="post.slug"
+      :class="{
+        'text-red-600': post.postVotes[0] && post.postVotes[0].vote == -1,
+      }"
+    />
   </div>
 </template>
 
 <script setup>
 import { Link } from "@inertiajs/inertia-vue3";
+import UpVoteLink from "./UpVoteLink.vue";
+import DownVoteLink from "./DownVoteLink.vue";
 
 defineProps({
-  post: String,
+  post: Object,
 });
 </script>
 

@@ -13,7 +13,7 @@
     "
   >
     <div class="mr-3">
-      <PostVote :post="post.slug" />
+      <PostVote :post="post" />
     </div>
     <div>
       <div class="flex m-2 p-2">
