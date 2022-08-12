@@ -2,7 +2,6 @@
   <div
     class="
       mt-4
-      p-6
       max-w-4xl
       flex
       bg-white
