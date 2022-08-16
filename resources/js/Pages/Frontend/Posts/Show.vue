@@ -17,9 +17,10 @@
             <div class="flex flex-col md:flex-row justify-between m-2">
               <div>
                 Posted by
-                <span class="ml-2 text-slate-700">{{
+                <span class="mx-2 text-slate-700">{{
                   post.data.username
                 }}</span>
+                {{ post.data.created_at }}
               </div>
               <div v-if="$page.props.auth.auth_check">
                 <Link
